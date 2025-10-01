@@ -17,3 +17,9 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+# Abaikan file installer & folder download
+*.exe
+*.msi
+/public/Downloads/
+/public/triniti/Downloads/
+
