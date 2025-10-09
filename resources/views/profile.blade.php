@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="container page profile-page">
-    <h2>Profil Pengguna</h2>
+    <h2>Profil</h2>
     <div class="profile-wrapper">
       <!-- Foto Profil -->
       <div class="profile-photo">
