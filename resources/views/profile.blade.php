@@ -15,7 +15,7 @@
       <div class="profile-info">
         <p><strong>Nama:</strong> Tri Fajar Suryani</p>
         <p><strong>Email:</strong> trifajarsuryani@gmail.com</p>
-        <p><strong>Deskripsi:</strong> Saya seorang pelajar / mahasiswa / web developer pemula. Saya sedang belajar membuat aplikasi web menggunakan Laravel dan mencoba membangun tampilan dinamis ini.</p>
+        <p><strong>Deskripsi:</strong> saya mampu merasakan apa yang dirasakan orang lain, mau mendengarkan dengan penuh perhatian, dan tidak ragu membantu ketika melihat orang lain kesusahan.</p>
       </div>
     </div>
   </div>
