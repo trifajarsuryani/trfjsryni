@@ -11,7 +11,7 @@ class BeritaController extends Controller
             "title" => "Berita",
             "berita" => Berita::ambildata(),
 
-        ])
+        ]);
     }
 
     public function tampildata($slugp) {

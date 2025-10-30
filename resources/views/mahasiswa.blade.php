@@ -1,50 +1,56 @@
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>data mahasiswa</title>
+@extends('layouts.main')
 
-</head>
-<body>
-    <button type="button" class="btn btn-success">Success</button>
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">no</th>
-      <th scope="col">nama</th>
-      <th scope="col">nim</th>
-      <th scope="col">prodi</th>
-      <th scope="col">email</th>
-      <th scope="col">No. hp</th>
-      <th scope="col">aksi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>John</td>
-      <td>Doe</td>
-      <td>@social</td>
-      <td>
-        <button type="button" class="btn btn-primary">Primary</button>
-        <button type="button" class="btn btn-danger">Danger</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-    
-</body>
-</html>
+@section('title', 'Data Mahasiswa | LARAVETI')
+
+@section('content')
+<div class="container">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-primary">Data Mahasiswa</h1>
+        <p class="text-muted">Berikut adalah daftar mahasiswa yang terdaftar di LARAVETI.</p>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-semibold">Daftar Mahasiswa</h5>
+        <button type="button" class="btn btn-success shadow-sm">
+            <i class="bi bi-plus-circle me-1"></i> Tambah Data
+        </button type="button" class="btn btn-success mb-2">Tambah Data +/</button>
+        
+    </div>
+
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-bordered table-striped align-middle mb-0">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th scope="col" style="width: 5%;">No</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">NIM</th>
+                    <th scope="col">Program Studi</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">No. HP</th>
+                    <th scope="col" style="width: 15%;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($mahasiswas as $index => $mhs)
+                <tr>
+                    <td class="text-center">{{ $index + 1 }}</td>
+                    <td>{{ $mhs->name }}</td>
+                    <td>{{ $mhs->NIM }}</td>
+                    <td>{{ $mhs->prodi }}</td>
+                    <td>{{ $mhs->email }}</td>
+                    <td>{{ $mhs->nohp }}</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-primary btn-sm me-1 shadow-sm">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm shadow-sm">
+                            <i class="bi bi-trash3"></i> Hapus
+                        </button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection
