@@ -1,56 +1,51 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
-@section('title', 'Data Mahasiswa | LARAVETI')
+@section('title', $title)
 
 @section('content')
-<div class="container">
-    <div class="text-center mb-5">
-        <h1 class="fw-bold text-primary">Data Mahasiswa</h1>
-        <p class="text-muted">Berikut adalah daftar mahasiswa yang terdaftar di LARAVETI.</p>
-    </div>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3">{{ $title }}</h1>
+    <a href="{{ route('tambahmahasiswa') }}" class="btn btn-success">Tambah Data</a>
+  </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="fw-semibold">Daftar Mahasiswa</h5>
-        <button type="button" class="btn btn-success shadow-sm">
-            <i class="bi bi-plus-circle me-1"></i> Tambah Data
-        </button type="button" class="btn btn-success mb-2">Tambah Data +/</button>
-        
+  @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ $message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+  @endif
 
-    <div class="table-responsive shadow-sm rounded">
-        <table class="table table-bordered table-striped align-middle mb-0">
-            <thead class="table-primary text-center">
-                <tr>
-                    <th scope="col" style="width: 5%;">No</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">NIM</th>
-                    <th scope="col">Program Studi</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">No. HP</th>
-                    <th scope="col" style="width: 15%;">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($mahasiswas as $index => $mhs)
-                <tr>
-                    <td class="text-center">{{ $index + 1 }}</td>
-                    <td>{{ $mhs->name }}</td>
-                    <td>{{ $mhs->NIM }}</td>
-                    <td>{{ $mhs->prodi }}</td>
-                    <td>{{ $mhs->email }}</td>
-                    <td>{{ $mhs->nohp }}</td>
-                    <td class="text-center">
-                        <button type="button" class="btn btn-primary btn-sm me-1 shadow-sm">
-                            <i class="bi bi-pencil-square"></i> Edit
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm shadow-sm">
-                            <i class="bi bi-trash3"></i> Hapus
-                        </button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <table class="table table-striped mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Prodi</th>
+            <th>Email</th>
+            <th>No. HP</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($mahasiswa as $mhs)
+            <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $mhs->name }}</td>
+              <td>{{ $mhs->nim }}</td>
+              <td>{{ $mhs->prodi }}</td>
+              <td>{{ $mhs->email }}</td>
+              <td>{{ $mhs->nohp }}</td>
+              <td>
+                <button class="btn btn-primary btn-sm">Edit</button>
+                <button class="btn btn-danger btn-sm">Hapus</button>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
-</div>
+  </div>
 @endsection
