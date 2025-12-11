@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers;
+
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,3 +47,15 @@ Route::get('/editmahasiswa/{id}', [MahasiswaController::class, 'edit'])->name('e
 Route::post('/editdata/{id}', [MahasiswaController::class, 'update'])->name('updatemahasiswa');
 
 Route::get('/deletedatamahasiswa/{id}', [MahasiswaController::class, 'delete'])->name('deletedata');
+
+use App\Http\Controllers\HapusController;
+
+Route::delete('/mahasiswa/{id}', [HapusController::class, 'destroy'])->name('hapusmahasiswa');
+use App\Http\Controllers\EditController;
+
+Route::get('/mahasiswa/{id}/edit', [EditController::class, 'edit'])->name('editmahasiswa');
+Route::put('/mahasiswa/{id}', [EditController::class, 'update'])->name('updatemahasiswa');
+
+Route::get('/mahasiswa/{id}/edit', [EditController::class, 'edit'])->name('editmahasiswa');
+Route::put('/mahasiswa/{id}', [EditController::class, 'update'])->name('updatemahasiswa');
+

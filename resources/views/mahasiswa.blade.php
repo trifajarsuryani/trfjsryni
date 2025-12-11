@@ -1,54 +1,52 @@
-@extends('layouts/main')
+@extends('layouts.app')
+
+@section('title', $title)
 
 @section('content')
-<h1 class="text-center">Data Mahasiswa</h1>
-  <div class="row mt-4">
-  <a href="/tambahmahasiswa">
-  <button type="button" class="btn btn-success mb-2">Tambah Data</button><br>
-  </a>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3">{{ $title }}</h1>
+    <a href="{{ route('tambahmahasiswa') }}" class="btn btn-success">Tambah Data</a>
+  </div>
+
   @if ($message = Session::get('success'))
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ $message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   @endif
-  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">No</th>
-      <th scope="col">Nama</th>
-      <th scope="col">NIM</th>
-      <th scope="col">Prodi</th>
-      <th scope="col">Email</th>
-      <th scope="col">No. HP</th>
-      <th scope="col">Aksi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php $i=1 ?> 
-    @foreach ($data as $mahasiswa)
 
-    <tr>
-      <th scope="row"><?php echo $i ?></th>
-      <td>{{ $mahasiswa["name"] }}</td>
-      <td>{{ $mahasiswa["nim"] }}</td>
-      <td>{{ $mahasiswa["prodi"] }}</td>
-      <td>{{ $mahasiswa["email"] }}</td>
-      <td>{{ $mahasiswa["nohp"] }}</td>
-      <td>
-        <button type="button" class="btn btn-primary">Edit</button>
-        <button type="button" class="btn btn-danger">Hapus</button>
-      </td>
-      <?php $i++ ?>
-    </tr>
-    @endforeach
-    
-  </tbody>
-</table>
-
-
-
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <table class="table table-striped mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Prodi</th>
+            <th>Email</th>
+            <th>No. HP</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($mahasiswa as $mhs)
+            <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $mhs->name }}</td>
+              <td>{{ $mhs->nim }}</td>
+              <td>{{ $mhs->prodi }}</td>
+              <td>{{ $mhs->email }}</td>
+              <td>{{ $mhs->nohp }}</td>
+              <td>
+                <button class="btn btn-primary btn-sm">Edit</button>
+                <button class="btn btn-danger btn-sm">Hapus</button>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
   </div>
-  
-
-
 @endsection
+
