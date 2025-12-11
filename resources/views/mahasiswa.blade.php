@@ -1,56 +1,54 @@
-@extends('layouts.main')
-
-@section('title', 'Data Mahasiswa | LARAVETI')
+@extends('layouts/main')
 
 @section('content')
-<div class="container">
-    <div class="text-center mb-5">
-        <h1 class="fw-bold text-primary">Data Mahasiswa</h1>
-        <p class="text-muted">Berikut adalah daftar mahasiswa yang terdaftar di LARAVETI.</p>
+<h1 class="text-center">Data Mahasiswa</h1>
+  <div class="row mt-4">
+  <a href="/tambahmahasiswa">
+  <button type="button" class="btn btn-success mb-2">Tambah Data</button><br>
+  </a>
+  @if ($message = Session::get('success'))
+    <div class="alert alert-success" role="alert">
+      {{ $message }}
     </div>
+  @endif
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Nama</th>
+      <th scope="col">NIM</th>
+      <th scope="col">Prodi</th>
+      <th scope="col">Email</th>
+      <th scope="col">No. HP</th>
+      <th scope="col">Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php $i=1 ?> 
+    @foreach ($data as $mahasiswa)
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="fw-semibold">Daftar Mahasiswa</h5>
-        <button type="button" class="btn btn-success shadow-sm">
-            <i class="bi bi-plus-circle me-1"></i> Tambah Data
-        </button type="button" class="btn btn-success mb-2">Tambah Data +/</button>
-        
-    </div>
+    <tr>
+      <th scope="row"><?php echo $i ?></th>
+      <td>{{ $mahasiswa["name"] }}</td>
+      <td>{{ $mahasiswa["nim"] }}</td>
+      <td>{{ $mahasiswa["prodi"] }}</td>
+      <td>{{ $mahasiswa["email"] }}</td>
+      <td>{{ $mahasiswa["nohp"] }}</td>
+      <td>
+        <button type="button" class="btn btn-primary">Edit</button>
+        <button type="button" class="btn btn-danger">Hapus</button>
+      </td>
+      <?php $i++ ?>
+    </tr>
+    @endforeach
+    
+  </tbody>
+</table>
 
-    <div class="table-responsive shadow-sm rounded">
-        <table class="table table-bordered table-striped align-middle mb-0">
-            <thead class="table-primary text-center">
-                <tr>
-                    <th scope="col" style="width: 5%;">No</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">NIM</th>
-                    <th scope="col">Program Studi</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">No. HP</th>
-                    <th scope="col" style="width: 15%;">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($mahasiswas as $index => $mhs)
-                <tr>
-                    <td class="text-center">{{ $index + 1 }}</td>
-                    <td>{{ $mhs->name }}</td>
-                    <td>{{ $mhs->NIM }}</td>
-                    <td>{{ $mhs->prodi }}</td>
-                    <td>{{ $mhs->email }}</td>
-                    <td>{{ $mhs->nohp }}</td>
-                    <td class="text-center">
-                        <button type="button" class="btn btn-primary btn-sm me-1 shadow-sm">
-                            <i class="bi bi-pencil-square"></i> Edit
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm shadow-sm">
-                            <i class="bi bi-trash3"></i> Hapus
-                        </button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
+
+
+  </div>
+  
+
+
 @endsection

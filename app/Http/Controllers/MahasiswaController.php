@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
 
@@ -9,10 +8,10 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-        $mahasiswas = Mahasiswa::all();
+        $mahasiswa = Mahasiswa::all();
         $title = 'Data Mahasiswa';
 
-        return view('mahasiswa', compact('mahasiswas', 'title'));
+        return view('mahasiswa', compact('mahasiswa', 'title'));
     }
 
     public function tambahmahasiswa()

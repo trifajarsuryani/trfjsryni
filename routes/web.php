@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers;
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,23 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
-Route::get('/berita', function () {
-    return view('berita');
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
+
+
+Route::get('/berita/{slug}', [BeritaController::class, 'tampildata'])->name('berita.show');
+   
+
+Route::get('/aboutme', function () {
+    return view('aboutme');
 });
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'] )->name('mahasiswa');
+
+Route::get('/tambahmahasiswa', [MahasiswaController::class, 'tambahmahasiswa'] )->name('tambahmahasiswa');
+
+Route::post('/insertdata', [MahasiswaController::class, 'insertdata'] )->name('insertdata');
+
+Route::get('/editmahasiswa/{id}', [MahasiswaController::class, 'edit'])->name('editmahasiswa');
+
+Route::post('/editdata/{id}', [MahasiswaController::class, 'update'])->name('updatemahasiswa');
+
+Route::get('/deletedatamahasiswa/{id}', [MahasiswaController::class, 'delete'])->name('deletedata');
