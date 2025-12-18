@@ -38,4 +38,16 @@ class MahasiswaController extends Controller
         // Redirect ke halaman daftar mahasiswa dengan pesan sukses
         return redirect()->route('mahasiswa')->with('success', 'Data mahasiswa berhasil ditambahkan');
     }
+    public function edit($id)
+{
+    $mhs = Mahasiswa::findOrFail($id);
+    return view('editmahasiswa', compact('mhs'));
 }
+    public function create()
+{
+    return view('tambahmahasiswa'); 
+}
+    
+}
+
+

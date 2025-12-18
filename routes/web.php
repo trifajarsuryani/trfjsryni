@@ -59,3 +59,22 @@ Route::put('/mahasiswa/{id}', [EditController::class, 'update'])->name('updatema
 Route::get('/mahasiswa/{id}/edit', [EditController::class, 'edit'])->name('editmahasiswa');
 Route::put('/mahasiswa/{id}', [EditController::class, 'update'])->name('updatemahasiswa');
 
+Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
+Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
+
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
+
+// Daftar Mahasiswa
+Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
+
+// Route untuk tambah data
+Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
+Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
+
+// Route edit & update
+Route::get('/mahasiswa/{id}/edit', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
+Route::put('/mahasiswa/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
+
+// Route hapus
+Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
+
