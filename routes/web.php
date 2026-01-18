@@ -1,80 +1,27 @@
 <?php
-use App\Http\Controllers;
 
-use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MahasiswaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// panggil auth routes Breeze
+require __DIR__.'/auth.php';
 
-Route::get('/home', function () {
-    return view('home');
+// Route publik
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
+Route::middleware(['auth'])->group(function () {
+    // jika route /dashboard belum ada
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    // sebelumnya sudah ada route /home
+    Route::get('/home', function () {
+        return redirect()->route('dashboard');
+    });
+
+    // mahasiswa
+    Route::resource('mahasiswa', MahasiswaController::class);
 });
-
-Route::get('/profile', function () {
-    return view('profile');
-});
-
-Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
-
-
-Route::get('/berita/{slug}', [BeritaController::class, 'tampildata'])->name('berita.show');
-   
-
-Route::get('/aboutme', function () {
-    return view('aboutme');
-});
-Route::get('/mahasiswa', [MahasiswaController::class, 'index'] )->name('mahasiswa');
-
-Route::get('/tambahmahasiswa', [MahasiswaController::class, 'tambahmahasiswa'] )->name('tambahmahasiswa');
-
-Route::post('/insertdata', [MahasiswaController::class, 'insertdata'] )->name('insertdata');
-
-Route::get('/editmahasiswa/{id}', [MahasiswaController::class, 'edit'])->name('editmahasiswa');
-
-Route::post('/editdata/{id}', [MahasiswaController::class, 'update'])->name('updatemahasiswa');
-
-Route::get('/deletedatamahasiswa/{id}', [MahasiswaController::class, 'delete'])->name('deletedata');
-
-use App\Http\Controllers\HapusController;
-
-Route::delete('/mahasiswa/{id}', [HapusController::class, 'destroy'])->name('hapusmahasiswa');
-use App\Http\Controllers\EditController;
-
-Route::get('/mahasiswa/{id}/edit', [EditController::class, 'edit'])->name('editmahasiswa');
-Route::put('/mahasiswa/{id}', [EditController::class, 'update'])->name('updatemahasiswa');
-
-Route::get('/mahasiswa/{id}/edit', [EditController::class, 'edit'])->name('editmahasiswa');
-Route::put('/mahasiswa/{id}', [EditController::class, 'update'])->name('updatemahasiswa');
-
-Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
-Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
-
-Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
-
-// Daftar Mahasiswa
-Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa');
-
-// Route untuk tambah data
-Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
-Route::post('/mahasiswa/store', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
-
-// Route edit & update
-Route::get('/mahasiswa/{id}/edit', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
-Route::put('/mahasiswa/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
-
-// Route hapus
-Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
-

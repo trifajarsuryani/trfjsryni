@@ -21,23 +21,25 @@ class MahasiswaController extends Controller
         ]);
     }
 
-    public function insertdata(Request $request)
-    {
-        // Validasi input
-        $validated = $request->validate([
-            'name'  => 'required|string|max:255',
-            'nim'   => 'required|string|max:50',
-            'prodi' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'nohp'  => 'required|string|max:20',
-        ]);
+   public function store(Request $request)
+{
+    // validasi input
+    $validated = $request->validate([
+        'name'  => 'required|string|max:255',
+        'nim'   => 'required|string|max:20',
+        'prodi' => 'required|string|max:100',
+        'email' => 'required|email',
+        'nohp'  => 'required|string|max:15',
+    ]);
 
-        // Simpan data yang sudah tervalidasi
-        Mahasiswa::create($validated);
+    // simpan ke database
+    Mahasiswa::create($validated);
 
-        // Redirect ke halaman daftar mahasiswa dengan pesan sukses
-        return redirect()->route('mahasiswa')->with('success', 'Data mahasiswa berhasil ditambahkan');
-    }
+    // redirect ke halaman index dengan pesan sukses
+    return redirect()->route('mahasiswa.index')
+                     ->with('success', 'Data mahasiswa berhasil ditambahkan!');
+}
+
     public function edit($id)
 {
     $mhs = Mahasiswa::findOrFail($id);
