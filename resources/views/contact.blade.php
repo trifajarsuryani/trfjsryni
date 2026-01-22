@@ -3,40 +3,37 @@
 @section('title', 'Contact')
 
 @section('content')
-  <div class="container page contact-page">
-    <h2>Contact Us</h2>
-    <p>Silakan isi formulir di bawah untuk menghubungi kami:</p>
+<div class="card card-custom p-5">
+    <h3 class="fw-bold mb-3">Hubungi saya</h3>
 
-    @if(session('success'))
-      <div class="alert success">
-        {{ session('success') }}
-      </div>
-    @endif
+    <p class="text-muted">
+        Jika Anda memiliki pertanyaan, saran, atau membutuhkan bantuan,
+        jangan ragu untuk menghubungi saya melalui informasi di bawah ini.
+    </p>
 
-    <form action="{{ url('/contact/send') }}" method="POST" class="contact-form">
-      @csrf
-      <div class="form-group">
-        <label for="name">Nama</label>
-        <input type="text" name="name" id="name" placeholder="Nama Anda" value="{{ old('name') }}" required>
-        @error('name')
-          <span class="error">{{ $message }}</span>
-        @enderror
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="Email Anda" value="{{ old('email') }}" required>
-        @error('email')
-          <span class="error">{{ $message }}</span>
-        @enderror
-      </div>
-      <div class="form-group">
-        <label for="message">Pesan</label>
-        <textarea name="message" id="message" rows="5" placeholder="Tulis pesan Anda..." required>{{ old('message') }}</textarea>
-        @error('message')
-          <span class="error">{{ $message }}</span>
-        @enderror
-      </div>
-      <button type="submit" class="btn-send">Kirim</button>
-    </form>
-  </div>
+    <div class="row mt-4">
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100">
+                <h6 class="fw-bold">📧 Email</h6>
+                <p class="mb-0">trifajarsuryani47@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="border rounded p-3 h-100">
+                <h6 class="fw-bold">📞 Telepon</h6>
+                <p class="mb-0">0831-2970-1641</p>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="border rounded p-3">
+                <h6 class="fw-bold">📍 Alamat</h6>
+                <p class="mb-0">
+                    Calabai, Dompu, Nusa Tenggara Barat, Indonesia
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

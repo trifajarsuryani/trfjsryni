@@ -1,55 +1,50 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+
 use App\Models\Mahasiswa;
+use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
     public function index()
     {
-        $mahasiswa = Mahasiswa::all();
-        $title = 'Data Mahasiswa';
-
-        return view('mahasiswa', compact('mahasiswa', 'title'));
+        $mahasiswas = Mahasiswa::all();
+        return view('index', compact('mahasiswas'));
     }
 
-    public function tambahmahasiswa()
+    public function create()
     {
-        return view('tambahmahasiswa', [
-            'title' => 'Tambah Data Mahasiswa',
-        ]);
+        return view('create');
     }
 
-   public function store(Request $request)
-{
-    // validasi input
-    $validated = $request->validate([
-        'name'  => 'required|string|max:255',
-        'nim'   => 'required|string|max:20',
-        'prodi' => 'required|string|max:100',
-        'email' => 'required|email',
-        'nohp'  => 'required|string|max:15',
-    ]);
+    public function store(Request $request)
+    {
+        Mahasiswa::create($request->all());
 
-    // simpan ke database
-    Mahasiswa::create($validated);
-
-    // redirect ke halaman index dengan pesan sukses
-    return redirect()->route('mahasiswa.index')
-                     ->with('success', 'Data mahasiswa berhasil ditambahkan!');
-}
+        return redirect()->route('mahasiswa.index')
+            ->with('success', 'Data mahasiswa berhasil ditambahkan');
+    }
 
     public function edit($id)
-{
-    $mhs = Mahasiswa::findOrFail($id);
-    return view('editmahasiswa', compact('mhs'));
-}
-    public function create()
-{
-    return view('tambahmahasiswa'); 
-}
-    
-}
+    {
+        $mahasiswa = Mahasiswa::findOrFail($id);
+        return view('edit', compact('mahasiswa'));
+    }
 
+    public function update(Request $request, $id)
+    {
+        Mahasiswa::findOrFail($id)->update($request->all());
 
+        return redirect()->route('mahasiswa.index')
+            ->with('success', 'Data mahasiswa berhasil diupdate');
+    }
+
+    public function destroy($id)
+    {
+        Mahasiswa::findOrFail($id)->delete();
+
+        return redirect()->route('mahasiswa.index')
+            ->with('success', 'Data mahasiswa berhasil dihapus');
+    }
+}

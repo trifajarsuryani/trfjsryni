@@ -3,23 +3,31 @@
 @section('title', 'Home')
 
 @section('content')
-  <div class="container page home-page">
-    <h2>Welcome to MySite</h2>
-    <p>Halo! Ini adalah halaman utama (Home). Terima kasih sudah mengunjungi website ini.</p>
+<div class="card card-custom p-5 text-center">
+    <h1 class="fw-bold mb-3">Selamat Datang 👋</h1>
 
-    <section class="features">
-      <div class="feature-card">
-        <h3>Fitur Unggulan 1</h3>
-        <p>Deskripsi fitur pertama yang menarik untuk ditampilkan.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Fitur Unggulan 2</h3>
-        <p>Deskripsi fitur kedua yang membantu pengguna.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Fitur Unggulan 3</h3>
-        <p>Deskripsi fitur ketiga yang keren dan berbeda.</p>
-      </div>
-    </section>
-  </div>
+    <p class="text-muted fs-5">
+        Website ini dibuat sebagai media informasi dan pengelolaan data mahasiswa
+        dengan tampilan sederhana, modern, dan mudah digunakan.
+    </p>
+
+    <hr class="my-4">
+
+    <p class="mb-4">
+        Jelajahi berbagai halaman yang tersedia untuk mengetahui lebih banyak
+        tentang kami dan informasi terbaru.
+    </p>
+
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="{{ route('berita') }}" class="btn btn-primary px-4">
+            📰 Berita
+        </a>
+        <a href="{{ route('profile') }}" class="btn btn-secondary px-4">
+            👤 Profil
+        </a>
+        <a href="{{ route('contact') }}" class="btn btn-info text-white px-4">
+            📞 Contact
+        </a>
+    </div>
+</div>
 @endsection

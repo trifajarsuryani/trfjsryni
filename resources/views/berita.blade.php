@@ -3,34 +3,32 @@
 @section('title', 'Berita')
 
 @section('content')
-  <div class="container page berita-page">
-    <h2>Berita Terbaru</h2>
+<div class="card card-custom p-4">
+    <h3 class="mb-4">Berita Terbaru</h3>
 
     @php
-      $daftarBerita = [
-        [
-          'judul' => 'Perubahan Kurikulum 2025',
-          'isi' => 'Pemerintah mengumumkan perubahan kurikulum nasional yang akan berlaku mulai tahun ajaran depan. Perubahan ini mencakup peningkatan materi teknologi, literasi digital, dan pengembangan karakter.'
-        ],
-        [
-          'judul' => 'Inovasi Teknologi Hijau',
-          'isi' => 'Perusahaan rintisan meluncurkan teknologi baru ramah lingkungan yang dapat mengurangi polusi udara dan limbah industri secara signifikan.'
-        ],
-        [
-          'judul' => 'Festival Budaya Lokal',
-          'isi' => 'Komunitas lokal menyelenggarakan festival budaya dengan pertunjukan seni tradisional, kuliner khas, dan bazar kreatif.'
-        ],
-      ];
+        $daftarBerita = [
+            [
+                'judul' => 'Perubahan Kurikulum 2025',
+                'isi' => 'Pemerintah mengumumkan perubahan kurikulum nasional yang akan berlaku mulai tahun ajaran depan. Fokus pada teknologi dan literasi digital.'
+            ],
+            [
+                'judul' => 'Inovasi Teknologi Hijau',
+                'isi' => 'Startup meluncurkan teknologi ramah lingkungan yang mampu mengurangi polusi dan limbah industri.'
+            ],
+            [
+                'judul' => 'Festival Budaya Lokal',
+                'isi' => 'Festival budaya digelar dengan pertunjukan seni tradisional, kuliner khas, dan bazar UMKM.'
+            ],
+        ];
     @endphp
 
-    <div class="berita-list">
-      @foreach($daftarBerita as $berita)
-        <div class="berita-item">
-          <h3>{{ $berita['judul'] }}</h3>
-          <p>{{ $berita['isi'] }}</p>
-          <a href="#" class="read-more">Read more &raquo;</a>
+    @foreach ($daftarBerita as $berita)
+        <div class="mb-4 p-3 border rounded bg-light">
+            <h5>{{ $berita['judul'] }}</h5>
+            <p>{{ $berita['isi'] }}</p>
+            <a href="#" class="btn btn-sm btn-primary">Read More</a>
         </div>
-      @endforeach
-    </div>
-  </div>
+    @endforeach
+</div>
 @endsection

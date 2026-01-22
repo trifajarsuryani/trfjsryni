@@ -7,15 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mahasiswa extends Model
 {
-    use HasFactory;
-
-    protected $table = 'mahasiswas';
-
     protected $fillable = [
         'name',
+        'email',
         'nim',
         'prodi',
-        'email',
-        'nohp',
+        'nohp'
     ];
 }
